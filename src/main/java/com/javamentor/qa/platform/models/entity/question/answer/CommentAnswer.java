@@ -5,13 +5,11 @@ import com.javamentor.qa.platform.models.entity.Comment;
 import com.javamentor.qa.platform.models.entity.CommentType;
 import com.javamentor.qa.platform.models.entity.user.User;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Getter
@@ -59,12 +57,13 @@ public class CommentAnswer implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CommentAnswer that = (CommentAnswer) o;
-        return Objects.equals(id, that.id);
+        return id != null &&
+                id.equals(that.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return getClass().hashCode();
     }
 
     public void setId(Long id) {

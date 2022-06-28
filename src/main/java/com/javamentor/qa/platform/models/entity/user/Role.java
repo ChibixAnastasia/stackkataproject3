@@ -6,12 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.Objects;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -43,12 +38,12 @@ public class Role implements GrantedAuthority {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Role role1 = (Role) o;
-        return Objects.equals(id, role1.id) &&
-                Objects.equals(name, role1.name);
+        return id != null &&
+                id.equals(role1.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return getClass().hashCode();
     }
 }

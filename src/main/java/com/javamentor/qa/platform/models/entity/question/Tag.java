@@ -8,20 +8,11 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Getter
@@ -76,15 +67,13 @@ public class Tag implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tag tag = (Tag) o;
-        return Objects.equals(id, tag.id) &&
-                Objects.equals(name, tag.name) &&
-                Objects.equals(description, tag.description) &&
-                Objects.equals(persistDateTime, tag.persistDateTime);
+        return id != null &&
+                id.equals(tag.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, persistDateTime);
+        return getClass().hashCode();
     }
 
 

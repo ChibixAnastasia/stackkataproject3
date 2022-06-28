@@ -1,14 +1,16 @@
 package com.javamentor.qa.platform.models.entity.chat;
 
 import com.javamentor.qa.platform.models.entity.user.User;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 @Getter
@@ -55,15 +57,12 @@ public class Message {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Message message1 = (Message) o;
-        return Objects.equals(id, message1.id) &&
-                Objects.equals(message, message1.message) &&
-                Objects.equals(lastRedactionDate, message1.lastRedactionDate) &&
-                Objects.equals(persistDate, message1.persistDate) &&
-                Objects.equals(userSender, message1.userSender);
+        return id != null &&
+                id.equals(message1.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, message, lastRedactionDate, persistDate, userSender);
+        return getClass().hashCode();
     }
 }

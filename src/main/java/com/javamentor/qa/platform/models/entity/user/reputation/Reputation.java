@@ -10,20 +10,10 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 @Getter
@@ -73,13 +63,12 @@ public class Reputation implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reputation reputation = (Reputation) o;
-        return Objects.equals(id, reputation.id) &&
-                Objects.equals(persistDate, reputation.persistDate) &&
-                Objects.equals(count, reputation.count);
+        return id != null &&
+                id.equals(reputation.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, persistDate, count);
+        return getClass().hashCode();
     }
 }

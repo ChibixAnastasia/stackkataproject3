@@ -7,14 +7,8 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 @Getter
@@ -50,12 +44,12 @@ public class Chat {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Chat chat = (Chat) o;
-        return Objects.equals(id, chat.id) && Objects.equals(title, chat.title) &&
-                Objects.equals(persistDate, chat.persistDate) && chatType == chat.chatType;
+        return id != null &&
+                id.equals(chat.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, persistDate, chatType);
+        return getClass().hashCode();
     }
 }
