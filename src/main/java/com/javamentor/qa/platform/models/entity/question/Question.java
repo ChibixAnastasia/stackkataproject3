@@ -55,6 +55,8 @@ public class Question implements Serializable {
     @Type(type = "org.hibernate.type.TextType")
     private String description;
 
+
+
     @CreationTimestamp
     @Column(name = "persist_date", updatable = false)
     @Type(type = "org.hibernate.type.LocalDateTimeType")
